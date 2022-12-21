@@ -92,7 +92,6 @@ def download_file(google_auth, file_name):
 
 def download_google_drive(google_auth):
     print("[INFO] Скачиваем документы с Google Диска")
-    download_file(file_name=file_name_1, google_auth=google_auth)
     download_file(file_name=file_name_2, google_auth=google_auth)
     print("[INFO] Все документы успешно скачаны")
 
@@ -101,10 +100,6 @@ def upload_google_drive(google_auth):
     drive = GoogleDrive(google_auth)
     query = f"title='{folder_name}' and mimeType='application/vnd.google-apps.folder' and trashed=false"
     folder = drive.ListFile({'q': query}).GetList()[0]
-    file_1 = drive.CreateFile({'parents': [{'id': folder['id'], 'title': file_name_1}]})
-    file_1.SetContentFile(file_name_1)
-    file_1.Upload()
-    print(f"[INFO] Файл {file_name_1} успешно загружен на Google Диск")
     file_2 = drive.CreateFile({'parents': [{'id': folder['id'], 'title': file_name_2}]})
     file_2.SetContentFile(file_name_2)
     file_2.Upload()
