@@ -25,7 +25,7 @@ def add_additional_price(start_price):
     else:
         percent = 0.25
     additional_price = start_price * percent
-    final_price = start_price + additional_price
+    final_price = int(start_price + additional_price)
     return final_price
 
 
@@ -61,10 +61,10 @@ def check_data(first_data):
         product_id = current_page[f"{columns['id']}{index}"].value
         if product_id in first_product_ids:
             current_page[f"{columns['price']}{index}"].value = first_data[product_id]
-            current_page[f"{columns['date_end']}{index}"].value = "-"
+            current_page[f"{columns['date_end']}{index}"].value = ""
             print(f"[INFO] Товар с артикулом {product_id} найден в обеих таблицах")
         else:
-            current_page[f"{columns['price']}{index}"].value = "-"
+            current_page[f"{columns['price']}{index}"].value = ""
             current_page[f"{columns['date_end']}{index}"].value = str(datetime.date.today())
             print(f"[INFO] Товар с артикулом {product_id} не найден во второй таблице")
     workbook.save(file_name_2)
