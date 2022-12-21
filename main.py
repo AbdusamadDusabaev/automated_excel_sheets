@@ -92,6 +92,7 @@ def download_file(google_auth, file_name):
 
 def download_google_drive(google_auth):
     print("[INFO] Скачиваем документы с Google Диска")
+    download_file(file_name=file_name_1, google_auth=google_auth)
     download_file(file_name=file_name_2, google_auth=google_auth)
     print("[INFO] Все документы успешно скачаны")
 
